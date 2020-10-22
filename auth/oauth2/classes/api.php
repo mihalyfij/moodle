@@ -256,10 +256,14 @@ class api {
         $user->email = $userinfo['email'];
         $user->auth = 'oauth2';
         $user->mnethostid = $CFG->mnet_localhost_id;
-        $user->lastname = isset($userinfo['lastname']) ? $userinfo['lastname'] : '';
-        $user->firstname = isset($userinfo['firstname']) ? $userinfo['firstname'] : '';
-        $user->url = isset($userinfo['url']) ? $userinfo['url'] : '';
-        $user->alternatename = isset($userinfo['alternatename']) ? $userinfo['alternatename'] : '';
+
+        $user_field_mapping = new \core\oauth2\user_field_mapping();
+        foreach ($user_field_mapping->get_internalfield_list() as $field) {
+            if (isset($userinfo[$field]) && $userinfo[$field]) {
+                $user->$field = $userinfo[$field];
+            }
+        }
+
         $user->secret = random_string(15);
 
         $user->password = '';
@@ -305,10 +309,14 @@ class api {
         $user->email = $userinfo['email'];
         $user->auth = 'oauth2';
         $user->mnethostid = $CFG->mnet_localhost_id;
-        $user->lastname = isset($userinfo['lastname']) ? $userinfo['lastname'] : '';
-        $user->firstname = isset($userinfo['firstname']) ? $userinfo['firstname'] : '';
-        $user->url = isset($userinfo['url']) ? $userinfo['url'] : '';
-        $user->alternatename = isset($userinfo['alternatename']) ? $userinfo['alternatename'] : '';
+
+        $user_field_mapping = new \core\oauth2\user_field_mapping();
+        foreach ($user_field_mapping->get_internalfield_list() as $field) {
+            if (isset($userinfo[$field]) && $userinfo[$field] !== '') {
+                $user->$field = $userinfo[$field];
+            }
+        }
+
         $user->secret = random_string(15);
 
         $user->password = '';
