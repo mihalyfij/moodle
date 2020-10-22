@@ -257,8 +257,8 @@ class api {
         $user->auth = 'oauth2';
         $user->mnethostid = $CFG->mnet_localhost_id;
 
-        $user_field_mapping = new \core\oauth2\user_field_mapping();
-        foreach ($user_field_mapping->get_internalfield_list() as $field) {
+        $userfieldmapping = new \core\oauth2\user_field_mapping();
+        foreach ($userfieldmapping->get_internalfield_list() as $field) {
             if (isset($userinfo[$field]) && $userinfo[$field]) {
                 $user->$field = $userinfo[$field];
             }
@@ -310,8 +310,8 @@ class api {
         $user->auth = 'oauth2';
         $user->mnethostid = $CFG->mnet_localhost_id;
 
-        $user_field_mapping = new \core\oauth2\user_field_mapping();
-        foreach ($user_field_mapping->get_internalfield_list() as $field) {
+        $userfieldmapping = new \core\oauth2\user_field_mapping();
+        foreach ($userfieldmapping->get_internalfield_list() as $field) {
             if (isset($userinfo[$field]) && $userinfo[$field] !== '') {
                 $user->$field = $userinfo[$field];
             }
